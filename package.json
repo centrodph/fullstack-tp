@@ -1,0 +1,17 @@
+{
+    "scripts": {
+        "front:install": "cd front && yarn install",
+        "front:start": "cd client && yarn dev",
+        "server:install": "source env/bin/activate && cd api && pip install -r requirements.txt",
+        "server:start": "source env/bin/activate && cd api && python manage.py runserver",
+        "server:migrate": "cd api && python manage.py migrate",
+        "server:makemigrations": "cd api && python manage.py makemigrations",
+        "server:createsuperuser": "cd api && python manage.py createsuperuser"
+    },
+    "name": "fullstack-tp",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/centrodph/fullstack-tp.git",
+    "author": "Gerardo Perrucci <centrodph@gmail.com>",
+    "license": "MIT"
+}
