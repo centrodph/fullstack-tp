@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from models.interview import Interview
-from serializers.interview_serializer import InterviewSerializer
+from interview.models.interview import Interview
+from interview.serializers.interview_serializer import InterviewSerializer
 
 
 class InterviewViewSet(viewsets.ModelViewSet):

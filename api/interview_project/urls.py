@@ -14,8 +14,36 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, re_path
+from rest_framework import routers
+from django.views.static import serve
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+from . import settings
+from interview.urls import router as interview_router
+
+router = routers.DefaultRouter()
+router.registry.extend(interview_router.registry)
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Full stack TP",
+        default_version='v1',
+        description="API for the Full stack TP",
+        contact=openapi.Contact(email="centrodph@gmail.com"),
+    ),
+    public=True,
+)
+
+
+static_urlpatterns = [
+    re_path(r"static/(?P<path>.*)$", serve, {"document_root": "static"}),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('doc/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]

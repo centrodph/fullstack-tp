@@ -1,4 +1,4 @@
-from api.interview.models.interview import Interview
+from interview.models.interview import Interview
 from rest_framework import serializers
 
 
