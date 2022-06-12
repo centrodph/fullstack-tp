@@ -3,17 +3,20 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <header>
-    <h1>Full Stack TP</h1>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/interviews">Interviews</RouterLink>
-      </nav>
+  <div>
+    <header>
+      <h1>Full Stack TP</h1>
+      <div class="wrapper">
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/interviews">Interviews</RouterLink>
+          <RouterLink to="/questions">Questions</RouterLink>
+        </nav>
+      </div>
+    </header>
+    <div id="main-content">
+      <RouterView />
     </div>
-  </header>
-  <div id="main-content">
-    <RouterView />
   </div>
 </template>
 
@@ -39,7 +42,7 @@ nav a {
   display: grid;
   grid-template-rows: auto 1fr;
 }
-#main-content{
+#main-content {
   padding: 1rem;
 }
 </style>
