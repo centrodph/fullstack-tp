@@ -1,10 +1,10 @@
 <script>
-import Candidate from "@/components/Candidate.vue";
+import QuestionOption from "@/components/QuestionOption.vue";
 import { humanDateTime, API_QUESTIONS } from "../helpers/index.js";
 
 export default {
   components: {
-    Candidate,
+    QuestionOption,
   },
   data: () => ({
     list: [],
@@ -34,11 +34,16 @@ export default {
   <div>
     <h2>Question List</h2>
     <ul>
-      <li v-for="{ id, title, update } in list" :key="id">
-        <h3>
-          {{ title }}
-        </h3>
-        <p><strong>Updated: </strong>{{ formatDate(update) }}</p>
+      <li v-for="{ id, title, update, options } in list" :key="id">
+        <div class="simple-header">
+          <h3>
+            {{ title }}
+          </h3>
+          <p><strong>Updated: </strong>{{ formatDate(update) }}</p>
+        </div>
+        <div v-for="option in options" :key="option.id">
+          <QuestionOption :option="option" />
+        </div>
       </li>
     </ul>
   </div>
@@ -58,19 +63,5 @@ li {
 }
 h2 {
   margin-bottom: 2rem;
-}
-
-.search {
-  display: grid;
-  grid-template-columns: auto 120px;
-  grid-gap: 10px;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
-}
-.search label {
-  font-weight: bold;
-}
-.search input {
-  width: 100%;
 }
 </style>

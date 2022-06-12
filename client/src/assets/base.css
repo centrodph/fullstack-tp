@@ -36,3 +36,9 @@ a,
 ul, li{
   list-style: none;
 }
+
+.simple-header{
+  display: grid;
+  justify-content: space-between;
+  grid-auto-flow: column;
+}

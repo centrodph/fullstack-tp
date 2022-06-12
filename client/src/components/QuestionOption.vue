@@ -1,13 +1,17 @@
 <script>
 export default {
   props: {
-    question: Object,
+    option: Object,
   },
 };
 </script>
 
 <template>
-  <div class="question-option">Question option</div>
+  <div class="question-option">
+    <span v-if="option.correct"> ✅ </span>
+    <span v-else>🛑</span>
+    {{ option.option }}
+  </div>
 </template>
 
 <style scoped>
