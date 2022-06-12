@@ -49,7 +49,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 a {
   text-decoration: none;
   color: #42b883;

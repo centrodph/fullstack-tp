@@ -19,6 +19,11 @@ const router = createRouter({
       name: "questionList",
       component: () => import("../views/QuestionList.vue"),
     },
+    {
+      path: "/challenges",
+      name: "challengeList",
+      component: () => import("../views/ChallengeList.vue"),
+    },
   ],
 });
 
