@@ -24,6 +24,11 @@ const router = createRouter({
       name: "challengeList",
       component: () => import("../views/ChallengeList.vue"),
     },
+    {
+      path: "/interview/:id",
+      name: "interviewCandidate",
+      component: () => import("../views/InterviewCandidate.vue"),
+    },
   ],
 });
 

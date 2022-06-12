@@ -22,8 +22,10 @@ body {
   --green: #42b883;
   --green-light: #42d392;
   --green-lighter: #35eb9a;
+  --green-darker: #155f3e;
   --blue-dark: #3468a3;
   --blue-darker: #255489;
+  --gray-dark-1: #636363;
 }
 a,
 .green {
@@ -46,4 +48,26 @@ ul, li{
   display: grid;
   justify-content: space-between;
   grid-auto-flow: column;
+}
+
+
+
+a.btn-ir-entrevista{
+  display: block;
+  background: var(--blue-darker);
+  color: white;
+  padding:0.3rem 1rem;
+  border-radius: 0.5rem;
+  /* font-size: 1.2rem; */
+  width: fit-content;
+  text-transform: uppercase;
+}
+a.btn-ir-entrevista:hover{
+  background: var(--green-darker);
+}
+
+.jf-l{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

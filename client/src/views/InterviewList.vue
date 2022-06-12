@@ -61,16 +61,15 @@ export default {
           <RouterLink :to="'/user/' + interviewer">View</RouterLink>
         </p>
         <p><strong>Access Code: </strong>{{ code_access }}</p>
+        <div class="jf-l">
+          <RouterLink class="btn-ir-entrevista" :to="'/interview/' + id">Ir a la entrevista</RouterLink>
+        </div>
       </li>
     </ul>
   </div>
 </template>
 
 <style scoped>
-a {
-  text-decoration: none;
-  color: #42b883;
-}
 li {
   line-height: 2;
   margin-bottom: 2rem;
