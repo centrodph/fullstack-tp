@@ -1,5 +1,6 @@
 <script>
 import Candidate from "@/components/Candidate.vue";
+import Question from "@/components/Question.vue";
 import {
   humanDateTime,
   API_INTERVIEWS,
@@ -9,17 +10,21 @@ import {
 export default {
   components: {
     Candidate,
+    Question,
   },
   data: () => ({
     interview: {},
     challenge: {},
+    answer: {},
   }),
 
   created() {
     this.fetchData();
   },
 
-  watch: {},
+  watch: {
+    answer: console.log,
+  },
   methods: {
     async fetchData() {
       const id = this.$route.params.id;
@@ -44,7 +49,35 @@ export default {
       </div>
       <div class="inteview-candidate">
         <h3>Challenge</h3>
-
+        <div>
+          <h4>{{ challenge.title }}</h4>
+          <p>{{ challenge.description }}</p>
+          <div>
+            <h4 style="color: var(--gray-dark-1)">Preguntas</h4>
+            <ol>
+              <li v-for="question in challenge.questions" :key="question.id">
+                <div>
+                  <div class="option-question">
+                    <Question :question="question" />
+                  </div>
+                  <div
+                    v-for="option in question.options"
+                    :key="option.id"
+                    class="option-radio"
+                  >
+                    <input
+                      :name="'question_' + question.id"
+                      type="radio"
+                      :id="option.id"
+                      @change="onChange($event)"
+                    />
+                    <label :for="option.id">{{ option.option }}</label>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
         <h3>Comments</h3>
       </div>
     </div>
@@ -64,5 +97,30 @@ h3 {
   display: grid;
   grid-auto-flow: row;
   gap: 1rem;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+  display: flex;
+  padding: 0.2rem 0;
+  font-size: 0.8rem;
+}
+ol li::before {
+  content: counter(my-awesome-counter) ". ";
+  color: var(--blue-darker);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.option-question {
+  font-weight: bold;
+}
+.option-radio {
+  display: grid;
+  padding: 0.3rem;
+  grid-template-columns: auto 1fr;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.option-radio input {
+  margin-top: 5px;
 }
 </style>
