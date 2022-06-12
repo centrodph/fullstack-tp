@@ -22,9 +22,11 @@ from drf_yasg import openapi
 
 from . import settings
 from interview.urls import router as interview_router
+from candidate.urls import router as candidate_router
 
 router = routers.DefaultRouter()
 router.registry.extend(interview_router.registry)
+router.registry.extend(candidate_router.registry)
 
 
 schema_view = get_schema_view(

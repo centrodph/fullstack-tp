@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'drf_yasg',
+    'candidate',
     'interview',
     'interviewer',
     'challenge',
