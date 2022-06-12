@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 
 from candidate.models.candidate import Candidate
+from challenge.models.challenge import Challenge
 
 class Interview(models.Model):
     description = description = models.TextField()
@@ -12,6 +13,12 @@ class Interview(models.Model):
     candidate = models.ForeignKey(
         Candidate,
         related_name='candidates',
+        on_delete=models.PROTECT,
+        null=True,
+    )
+    challenge = models.ForeignKey(
+        Challenge,
+        related_name='challenges',
         on_delete=models.PROTECT,
         null=True,
     )

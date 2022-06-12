@@ -10,4 +10,4 @@ class Challenge(models.Model):
     questions = models.ManyToManyField(Question, related_name='challenges')
 
     def __str__(self):
-        return 'Question: '+self.title
+        return 'Challenge: '+self.title
