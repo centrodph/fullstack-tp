@@ -24,12 +24,13 @@ from . import settings
 from interview.urls import router as interview_router
 from candidate.urls import router as candidate_router
 from question.urls import router as question_router
+from challenge.urls import router as challenge_router
 
 router = routers.DefaultRouter()
 router.registry.extend(interview_router.registry)
 router.registry.extend(candidate_router.registry)
 router.registry.extend(question_router.registry)
-
+router.registry.extend(challenge_router.registry)
 
 schema_view = get_schema_view(
     openapi.Info(
