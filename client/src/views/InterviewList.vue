@@ -1,11 +1,11 @@
-<!--
-This example fetches latest Vue.js commits data from GitHub’s API and displays them as a list.
-You can switch between the two branches.
--->
-
 <script>
-import { humanDate, API_INTERVIEWS } from "../helpers/index.js";
+import Candidate from "@/components/Candidate.vue";
+import { humanDateTime, API_INTERVIEWS } from "../helpers/index.js";
+
 export default {
+  components: {
+    Candidate,
+  },
   data: () => ({
     list: [],
     search: "",
@@ -26,7 +26,7 @@ export default {
     async fetchData() {
       this.list = await (await fetch(API_INTERVIEWS)).json();
     },
-    formatDate: humanDate,
+    formatDate: humanDateTime,
   },
 };
 </script>
@@ -47,12 +47,14 @@ export default {
           id,
           interviewer,
           interviewer_username,
+          candidate_data,
         } in list"
         :key="id"
       >
         <h3>
           {{ description }}
         </h3>
+        <Candidate :candidate="candidate_data" />
         <p><strong>Dia y Hora: </strong>{{ formatDate(date) }}</p>
         <p>
           <strong>Entrevistador: </strong>{{ interviewer_username }}
@@ -70,8 +72,11 @@ a {
   color: #42b883;
 }
 li {
-  line-height: 1.5em;
-  margin-bottom: 20px;
+  line-height: 2;
+  margin-bottom: 2rem;
+  border-top: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
+  padding: 1rem 0.3rem;
 }
 h2 {
   margin-bottom: 2rem;
