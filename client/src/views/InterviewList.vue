@@ -4,9 +4,7 @@ You can switch between the two branches.
 -->
 
 <script>
-import { humanDate } from "../helpers/index.js";
-const API_URL = "http://localhost:8000/api/interviews/";
-
+import { humanDate, API_INTERVIEWS } from "../helpers/index.js";
 export default {
   data: () => ({
     list: [],
@@ -26,8 +24,7 @@ export default {
 
   methods: {
     async fetchData() {
-      const url = `${API_URL}`;
-      this.list = await (await fetch(url)).json();
+      this.list = await (await fetch(API_INTERVIEWS)).json();
     },
     formatDate: humanDate,
   },
@@ -43,14 +40,24 @@ export default {
     </div>
     <ul>
       <li
-        v-for="{ code_access, date, description, id, interviewer } in list"
+        v-for="{
+          code_access,
+          date,
+          description,
+          id,
+          interviewer,
+          interviewer_username,
+        } in list"
         :key="id"
       >
         <h3>
           {{ description }}
         </h3>
         <p><strong>Dia y Hora: </strong>{{ formatDate(date) }}</p>
-        <p><strong>Entrevistador: </strong>{{ interviewer }}</p>
+        <p>
+          <strong>Entrevistador: </strong>{{ interviewer_username }}
+          <RouterLink :to="'/user/' + interviewer">View</RouterLink>
+        </p>
         <p><strong>Access Code: </strong>{{ code_access }}</p>
       </li>
     </ul>
