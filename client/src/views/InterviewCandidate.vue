@@ -5,6 +5,7 @@ import {
   humanDateTime,
   API_INTERVIEWS,
   API_CHALLENGES,
+  API_INTERVIEW_REPORT,
 } from "../helpers/index.js";
 
 export default {
@@ -15,7 +16,7 @@ export default {
   data: () => ({
     interview: {},
     challenge: {},
-    answer: {},
+    answer: { 1: { 10: true } },
   }),
 
   created() {
@@ -34,6 +35,32 @@ export default {
       this.challenge = await (await fetch(urlChallenge)).json();
     },
     formatDate: humanDateTime,
+    onChange(e) {
+      const { question, questionOption } = e.target.dataset;
+      this.answer[this.getKey(question, questionOption)] = questionOption;
+      this.updateSelection(question, questionOption);
+    },
+    getKey(question, questionOption) {
+      return `${question}_${questionOption}`;
+    },
+    updateSelection(question, questionOption) {
+      const url = `${API_INTERVIEW_REPORT}`;
+      const data = {
+        comments: "Test",
+        interview: this.interview.id,
+        candidate: this.interview.candidate_data.id,
+        challenge: this.interview.challenge,
+        question: question,
+        question_option: questionOption,
+      };
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
   },
 };
 </script>
@@ -70,6 +97,9 @@ export default {
                       type="radio"
                       :id="option.id"
                       @change="onChange($event)"
+                      :data-question="question.id"
+                      :data-question-option="option.id"
+                      :value="answer[getKey(question.id, option.id)]"
                     />
                     <label :for="option.id">{{ option.option }}</label>
                   </div>
