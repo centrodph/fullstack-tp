@@ -16,7 +16,8 @@ export default {
   data: () => ({
     interview: {},
     challenge: {},
-    answer: { 1: { 10: true } },
+    answer: {},
+    comments: {},
   }),
 
   created() {
@@ -40,13 +41,18 @@ export default {
       this.answer[this.getKey(question, questionOption)] = questionOption;
       this.updateSelection(question, questionOption);
     },
+    onChangeComment(e) {
+      const { question } = e.target.dataset;
+      this.comments[question] = e.target.value;
+    },
     getKey(question, questionOption) {
       return `${question}_${questionOption}`;
     },
     updateSelection(question, questionOption) {
+      console.log(this.comments);
       const url = `${API_INTERVIEW_REPORT}`;
       const data = {
-        comments: "Test",
+        comments: this.comments[question] || "-",
         interview: this.interview.id,
         candidate: this.interview.candidate_data.id,
         challenge: this.interview.challenge,
@@ -103,12 +109,17 @@ export default {
                     />
                     <label :for="option.id">{{ option.option }}</label>
                   </div>
+                  <h5>Comentarios</h5>
+                  <textarea
+                    name="comment"
+                    @input="onChangeComment($event)"
+                    :data-question="question.id"
+                  ></textarea>
                 </div>
               </li>
             </ol>
           </div>
         </div>
-        <h3>Comments</h3>
       </div>
     </div>
   </div>
@@ -152,5 +163,10 @@ ol li::before {
 }
 .option-radio input {
   margin-top: 5px;
+}
+textarea {
+  resize: none;
+  width: 100%;
+  border: solid 1px #ccc;
 }
 </style>
