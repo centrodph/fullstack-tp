@@ -50,7 +50,7 @@ export default {
     },
     updateSelection(question, questionOption) {
       console.log(this.comments);
-      const url = `${API_INTERVIEW_REPORT}`;
+      const url = `${API_INTERVIEW_REPORT}save_question_answer/`;
       const data = {
         comments: this.comments[question] || "-",
         interview: this.interview.id,

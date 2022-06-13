@@ -38,7 +38,7 @@ class InterviewReport(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
-    comments = models.TextField(max_length=2000)
+    comments = models.TextField(max_length=500, null=True,)
     update = models.DateTimeField(auto_now=True)
 
     def __str__(self):
