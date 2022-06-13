@@ -4,6 +4,6 @@ from interview.serializers.interview_serializer import InterviewSerializer
 
 
 class InterviewViewSet(viewsets.ModelViewSet):
-    """Event resource"""
+    """Interview resource"""
     queryset = Interview.objects.all()
     serializer_class = InterviewSerializer

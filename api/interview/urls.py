@@ -4,4 +4,4 @@ from interview.views.interview import InterviewViewSet
 from interview.views.interview_report import InterviewReportViewSet
 router = routers.DefaultRouter()
 router.register(r'interviews', InterviewViewSet, 'interviews')
-router.register(r'interviews', InterviewReportViewSet, 'interviews')
+router.register(r'interview_reports', InterviewReportViewSet, 'interview_reports')
