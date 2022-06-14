@@ -42,4 +42,4 @@ class InterviewReport(models.Model):
     update = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return 'Interview Report: '+self.title
+        return 'Interview: '+str(self.interview.id)+' Candidate: '+self.candidate.name+' Challenge: '+self.challenge.title+' Question: '+self.question.title+' Option: '+str(self.question_option)
