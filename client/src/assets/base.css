@@ -52,7 +52,9 @@ ul, li{
 
 
 
-a.btn-ir-entrevista{
+a.btn-ir-entrevista,
+button.btn-ir-entrevista{
+  border: none;
   display: block;
   background: var(--blue-darker);
   color: white;
@@ -61,8 +63,10 @@ a.btn-ir-entrevista{
   /* font-size: 1.2rem; */
   width: fit-content;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.5s, background-color 0.5s;
 }
-a.btn-ir-entrevista:hover{
+button.btn-ir-entrevista:hover{
   background: var(--green-darker);
 }
 

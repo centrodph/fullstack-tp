@@ -23,11 +23,10 @@ export default {
 
   created() {
     this.fetchData();
+    this.fetchLatestReport();
   },
 
-  watch: {
-    answer: console.log,
-  },
+  watch: {},
   methods: {
     async fetchData() {
       const id = this.$route.params.id;
@@ -35,6 +34,17 @@ export default {
       this.interview = await (await fetch(url)).json();
       const urlChallenge = `${API_CHALLENGES}${this.interview.challenge}`;
       this.challenge = await (await fetch(urlChallenge)).json();
+    },
+    async fetchLatestReport() {
+      const id = this.$route.params.id;
+      const url = `${API_INTERVIEW_REPORT}?interview=${id}`;
+      const reports = await (await fetch(url)).json();
+      if (reports.length > 0) {
+        reports.forEach(({ comments, question, question_option }) => {
+          this.answer[this.getKey(question)] = `${question_option}`;
+          this.comments[this.getKey(question)] = comments;
+        });
+      }
     },
     formatDate: humanDateTime,
     onChange(e) {
@@ -49,9 +59,12 @@ export default {
     },
     onChangeDebounce: debounce(function (e) {
       this.onChangeComment(e);
-    }, 2000),
+    }, 600),
     getKey(question) {
       return `${question}`;
+    },
+    save() {
+      Object.keys(this.answer).forEach(this.updateSelection);
     },
     updateSelection(question) {
       if (!this.answer[this.getKey(question)]) return;
@@ -108,22 +121,32 @@ export default {
                       :name="'question_' + question.id"
                       type="radio"
                       :id="option.id"
-                      @change="onChange($event)"
                       :data-question="question.id"
                       :data-question-option="option.id"
-                      :value="answer[getKey(question.id, option.id)]"
+                      :checked="
+                        String(option.id) === answer[getKey(question.id)]
+                      "
+                      @change="onChange($event)"
                     />
                     <label :for="option.id">{{ option.option }}</label>
                   </div>
                   <h5>Comentarios</h5>
                   <textarea
                     name="comment"
-                    @input="onChangeDebounce($event)"
                     :data-question="question.id"
+                    v-model="comments[getKey(question.id)]"
                   ></textarea>
                 </div>
               </li>
             </ol>
+          </div>
+        </div>
+
+        <div class="floating-btn">
+          <div class="jf-l">
+            <button type="button" @click="save()" class="btn-ir-entrevista">
+              Guardar
+            </button>
           </div>
         </div>
       </div>
@@ -132,6 +155,18 @@ export default {
 </template>
 
 <style scoped>
+.interview-main {
+  padding-bottom: 90px;
+}
+.floating-btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 1rem;
+  background: #ccc;
+}
 .description {
   font-weight: normal;
   color: var(--gray-dark-1);
