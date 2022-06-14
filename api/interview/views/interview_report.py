@@ -13,5 +13,20 @@ class InterviewReportViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['POST'])
     def save_question_answer(self, request):
         """Save question answer"""
-        print(request.data)
+        answer = InterviewReport.objects.filter(
+            candidate=request.data.get('candidate'),
+            interview=request.data['interview'],
+            question=request.data['question']
+        )
+        if answer.exists():
+            print("Answer exists")
+            serializer = InterviewReportSerializer(answer[0], data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+        else:
+            print("Answer not exists")
+            serializer = InterviewReportSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
         return Response({'status': status.HTTP_200_OK})
