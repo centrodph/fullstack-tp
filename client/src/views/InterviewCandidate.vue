@@ -1,4 +1,5 @@
 <script>
+import debounce from "lodash.debounce";
 import Candidate from "@/components/Candidate.vue";
 import Question from "@/components/Question.vue";
 import {
@@ -38,26 +39,31 @@ export default {
     formatDate: humanDateTime,
     onChange(e) {
       const { question, questionOption } = e.target.dataset;
-      this.answer[this.getKey(question, questionOption)] = questionOption;
-      this.updateSelection(question, questionOption);
+      this.answer[this.getKey(question)] = questionOption;
+      this.updateSelection(question);
     },
     onChangeComment(e) {
       const { question } = e.target.dataset;
       this.comments[question] = e.target.value;
+      this.updateSelection(question);
     },
-    getKey(question, questionOption) {
-      return `${question}_${questionOption}`;
+    onChangeDebounce: debounce(function (e) {
+      this.onChangeComment(e);
+    }, 2000),
+    getKey(question) {
+      return `${question}`;
     },
-    updateSelection(question, questionOption) {
-      console.log(this.comments);
+    updateSelection(question) {
+      if (!this.answer[this.getKey(question)]) return;
+
       const url = `${API_INTERVIEW_REPORT}save_question_answer/`;
       const data = {
-        comments: this.comments[question] || "-",
+        comments: this.comments[question],
         interview: this.interview.id,
         candidate: this.interview.candidate_data.id,
         challenge: this.interview.challenge,
         question: question,
-        question_option: questionOption,
+        question_option: this.answer[this.getKey(question)],
       };
       fetch(url, {
         method: "POST",
@@ -112,7 +118,7 @@ export default {
                   <h5>Comentarios</h5>
                   <textarea
                     name="comment"
-                    @input="onChangeComment($event)"
+                    @input="onChangeDebounce($event)"
                     :data-question="question.id"
                   ></textarea>
                 </div>
