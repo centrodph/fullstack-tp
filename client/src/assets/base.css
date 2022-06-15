@@ -75,3 +75,19 @@ button.btn-ir-entrevista:hover{
   justify-content: flex-end;
   align-items: center;
 }
+
+.input{
+  width: 100%;
+  margin: 1rem 0;
+  display: grid;
+  grid-auto-flow: row;
+}
+input[type="text"], 
+input[type="password"]{
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--gray-dark-1);
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  transition: border-color 0.5s;
+}

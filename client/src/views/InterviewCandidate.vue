@@ -95,11 +95,11 @@ export default {
     <h2>Interview [{{ $route.params.id }}]</h2>
     <h4 class="description">{{ interview.description }}</h4>
     <div class="interview-main">
-      <div class="inteview-candidate">
+      <div class="interview-candidate">
         <h3>Candidato</h3>
         <Candidate :candidate="interview.candidate_data" />
       </div>
-      <div class="inteview-candidate">
+      <div class="interview-candidate">
         <h3>Challenge</h3>
         <div>
           <h4>{{ challenge.title }}</h4>

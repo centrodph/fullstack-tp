@@ -1,3 +1,4 @@
+import { useInterviewsStore } from "@/stores/interviews";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
@@ -31,5 +32,14 @@ const router = createRouter({
     },
   ],
 });
+
+// router.beforeEach(async (to, from) => {
+//   const interviews = useInterviewsStore();
+//   console.log("Checking login", interviews.user);
+
+//   if (!interviews.user) {
+//     return "/";
+//   }
+// });
 
 export default router;

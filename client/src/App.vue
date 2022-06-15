@@ -1,14 +1,29 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from "vue-router";
-</script>
+import { useInterviewsStore } from "@/stores/interviews";
 
+export default {
+  setup() {
+    const interviews = useInterviewsStore();
+
+    return { interviews };
+  },
+  components: {},
+  data() {
+    return { user: this.interviews.user };
+  },
+  created() {},
+  watch: {},
+  methods: {},
+};
+</script>
 <template>
   <div>
     <header>
-      <h1>Full Stack TP</h1>
+      <h1>Entrevistas</h1>
       <div class="wrapper">
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
+        <nav v-if="user">
+          <RouterLink to="/">Login</RouterLink>
           <RouterLink to="/interviews">Interviews</RouterLink>
           <RouterLink to="/questions">Questions</RouterLink>
           <RouterLink to="/challenges">Challenges</RouterLink>

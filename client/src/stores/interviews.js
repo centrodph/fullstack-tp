@@ -1,16 +1,16 @@
 import { defineStore } from "pinia";
 
 export const useInterviewsStore = defineStore({
-  id: "interviews",
+  id: "user",
   state: () => ({
-    list: [],
+    user: null,
   }),
   getters: {
-    doubleCount: (state) => state.counter * 2,
+    getUser: (state) => state.user,
   },
   actions: {
-    list() {
-      console.log("list");
+    login() {
+      console.log("login", this.getUser());
     },
   },
 });
