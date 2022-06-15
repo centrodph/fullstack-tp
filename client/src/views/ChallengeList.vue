@@ -1,10 +1,10 @@
 <script>
-import Question from "@/components/Question.vue";
+import QuestionItem from "@/components/QuestionItem.vue";
 import { humanDate, API_CHALLENGES } from "../helpers/index.js";
 
 export default {
   components: {
-    Question,
+    QuestionItem,
   },
   data: () => ({
     list: [],
@@ -47,7 +47,7 @@ export default {
         <p class="description">{{ description }}</p>
         <ol>
           <li v-for="question in questions" :key="question.id">
-            <Question :question="question" />
+            <QuestionItem :question="question" />
           </li>
         </ol>
       </li>

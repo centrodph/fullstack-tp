@@ -1,10 +1,16 @@
 <script>
-import Candidate from "@/components/Candidate.vue";
+import { mapState, mapActions } from "pinia";
+import CandidateBox from "@/components/CandidateBox.vue";
 import { humanDateTime, API_INTERVIEWS } from "../helpers/index.js";
+import { useInterviewsStatusStore } from "@/stores/interviewStatus";
 
 export default {
+  setup() {
+    const status = useInterviewsStatusStore();
+    status.fetchStatuses();
+  },
   components: {
-    Candidate,
+    CandidateBox,
   },
   data: () => ({
     list: [],
@@ -28,6 +34,9 @@ export default {
     },
     formatDate: humanDateTime,
   },
+  computed: {
+    ...mapState(useInterviewsStatusStore, ["statusMap"]),
+  },
 };
 </script>
 
@@ -48,13 +57,12 @@ export default {
           interviewer,
           interviewer_username,
           candidate_data,
+          status,
         } in list"
         :key="id"
       >
-        <h3>
-          {{ description }}
-        </h3>
-        <Candidate :candidate="candidate_data" />
+        <h3>{{ description }} {{ statusMap[status] }}</h3>
+        <CandidateBox :candidate="candidate_data" />
         <p><strong>Dia y Hora: </strong>{{ formatDate(date) }}</p>
         <p>
           <strong>Entrevistador: </strong>{{ interviewer_username }}
@@ -62,7 +70,9 @@ export default {
         </p>
         <p><strong>Access Code: </strong>{{ code_access }}</p>
         <div class="jf-l">
-          <RouterLink class="btn-ir-entrevista" :to="'/interview/' + id">Ir a la entrevista</RouterLink>
+          <RouterLink class="btn-ir-entrevista" :to="'/interview/' + id"
+            >Ir a la entrevista</RouterLink
+          >
         </div>
       </li>
     </ul>

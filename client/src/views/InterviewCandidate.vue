@@ -1,7 +1,7 @@
 <script>
 import debounce from "lodash.debounce";
-import Candidate from "@/components/Candidate.vue";
-import Question from "@/components/Question.vue";
+import CandidateBox from "@/components/CandidateBox.vue";
+import QuestionItem from "@/components/QuestionItem.vue";
 import {
   humanDateTime,
   API_INTERVIEWS,
@@ -11,8 +11,8 @@ import {
 
 export default {
   components: {
-    Candidate,
-    Question,
+    CandidateBox,
+    QuestionItem,
   },
   data: () => ({
     interview: {},
@@ -97,7 +97,7 @@ export default {
     <div class="interview-main">
       <div class="interview-candidate">
         <h3>Candidato</h3>
-        <Candidate :candidate="interview.candidate_data" />
+        <CandidateBox :candidate="interview.candidate_data" />
       </div>
       <div class="interview-candidate">
         <h3>Challenge</h3>
@@ -110,7 +110,7 @@ export default {
               <li v-for="question in challenge.questions" :key="question.id">
                 <div>
                   <div class="option-question">
-                    <Question :question="question" />
+                    <QuestionItem :question="question" />
                   </div>
                   <div
                     v-for="option in question.options"

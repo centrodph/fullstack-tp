@@ -4,8 +4,8 @@ import router from "../router";
 export const useInterviewsStore = defineStore({
   id: "user",
   state: () => ({
-    user: null,
-    role: null,
+    user: "user",
+    role: "user",
   }),
   getters: {
     getUser: (state) => state.user,

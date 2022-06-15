@@ -39,6 +39,9 @@ router.beforeEach(async (to) => {
   if (!interviews.user && to.path !== "/") {
     return router.push("/");
   }
+  if (interviews.user && to.path === "/") {
+    return router.push("/interviews");
+  }
 });
 
 export default router;
