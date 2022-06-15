@@ -32,12 +32,12 @@ export default {
   <main>
     <form v-on:submit="save($event)" autocomplete="off">
       <div class="input">
-        <label :for="search">User</label>
-        <input type="text" v-model="user" autocomplete="off" />
+        <label :for="user">User</label>
+        <input type="text" id="user" v-model="user" autocomplete="off" />
       </div>
       <div class="input">
-        <label :for="search">Pass</label>
-        <input type="password" v-model="pass" autocomplete="off" />
+        <label :for="pass">Pass</label>
+        <input type="password" id="pass" v-model="pass" autocomplete="off" />
       </div>
       <div class="input">
         <button class="btn-ir-entrevista">Login</button>
