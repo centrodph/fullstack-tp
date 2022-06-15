@@ -1,20 +1,21 @@
 <script>
+import { mapState } from "pinia";
 import { RouterLink, RouterView } from "vue-router";
 import { useInterviewsStore } from "@/stores/interviews";
 
 export default {
-  setup() {
-    const interviews = useInterviewsStore();
-
-    return { interviews };
+  setup() {},
+  components: {
+    RouterLink,
+    RouterView,
   },
-  components: {},
-  data() {
-    return { user: this.interviews.user };
-  },
+  data() {},
   created() {},
   watch: {},
   methods: {},
+  computed: {
+    ...mapState(useInterviewsStore, ["user"]),
+  },
 };
 </script>
 <template>
@@ -23,7 +24,6 @@ export default {
       <h1>Entrevistas</h1>
       <div class="wrapper">
         <nav v-if="user">
-          <RouterLink to="/">Login</RouterLink>
           <RouterLink to="/interviews">Interviews</RouterLink>
           <RouterLink to="/questions">Questions</RouterLink>
           <RouterLink to="/challenges">Challenges</RouterLink>

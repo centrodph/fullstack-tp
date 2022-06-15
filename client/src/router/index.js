@@ -33,13 +33,13 @@ const router = createRouter({
   ],
 });
 
-// router.beforeEach(async (to, from) => {
-//   const interviews = useInterviewsStore();
-//   console.log("Checking login", interviews.user);
+router.beforeEach(async (to, from) => {
+  const interviews = useInterviewsStore();
+  console.log("Checking login", from);
 
-//   if (!interviews.user) {
-//     return "/";
-//   }
-// });
+  if (!interviews.user && from.path !== "/") {
+    return "/";
+  }
+});
 
 export default router;

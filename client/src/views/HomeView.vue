@@ -9,18 +9,20 @@ export default {
 
     return { interviews };
   },
-  components: {},
-  data: () => ({}),
 
+  components: {},
+  data: () => ({
+    user: this,
+    pass: null,
+  }),
   created() {
     console.log("Created");
   },
-
   watch: {},
   methods: {
     save(e) {
       e.preventDefault();
-      this.interviews.login();
+      this.interviews.login(this.user, this.pass);
     },
   },
 };
@@ -28,14 +30,14 @@ export default {
 
 <template>
   <main>
-    <form v-on:submit="save($event)">
+    <form v-on:submit="save($event)" autocomplete="off">
       <div class="input">
         <label :for="search">User</label>
-        <input type="text" :id="user" name="user" v-model="user" />
+        <input type="text" v-model="user" autocomplete="off" />
       </div>
       <div class="input">
         <label :for="search">Pass</label>
-        <input type="password" :id="pass" name="pass" v-model="pass" />
+        <input type="password" v-model="pass" autocomplete="off" />
       </div>
       <div class="input">
         <button class="btn-ir-entrevista">Login</button>
