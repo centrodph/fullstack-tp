@@ -25,5 +25,8 @@ export const useInterviewsStore = defineStore({
         router.push("/interviews");
       }
     },
+    logout() {
+      console.log("Logout user", this.user);
+    },
   },
 });

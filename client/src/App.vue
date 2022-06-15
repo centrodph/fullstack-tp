@@ -2,12 +2,14 @@
 import { mapState } from "pinia";
 import { RouterLink, RouterView } from "vue-router";
 import { useInterviewsStore } from "@/stores/interviews";
+import UserMenu from "@/components/UserMenu.vue";
 
 export default {
   setup() {},
   components: {
     RouterLink,
     RouterView,
+    UserMenu,
   },
   data() {},
   created() {},
@@ -28,10 +30,7 @@ export default {
           <RouterLink to="/questions">Questions</RouterLink>
           <RouterLink to="/challenges">Challenges</RouterLink>
         </nav>
-        <div v-if="user" class="user">
-          <span>{{ user }}</span>
-          <button @click="user.logout()">Logout</button>
-        </div>
+        <UserMenu />
       </div>
     </header>
     <div id="main-content">

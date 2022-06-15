@@ -27,8 +27,8 @@ export default {
 
 <style scoped>
 .candidate-box {
-  background: rgba(0, 0, 0, 0.02);
-  padding: 0.3rem;
+  border: solid 1px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem;
 }
 .description {
   font-size: 0.8rem;

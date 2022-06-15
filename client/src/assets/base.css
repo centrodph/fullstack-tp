@@ -51,21 +51,29 @@ ul, li{
 }
 
 
-
-a.btn-ir-entrevista,
-button.btn-ir-entrevista{
+button, a.btn-ir-entrevista{
   border: none;
   display: block;
-  background: var(--blue-darker);
   color: white;
-  padding:0.3rem 1rem;
   border-radius: 0.5rem;
-  /* font-size: 1.2rem; */
   width: fit-content;
-  text-transform: uppercase;
   cursor: pointer;
   transition: color 0.5s, background-color 0.5s;
+  padding:0.2rem 0.4rem;
+  background: var(--green-darker);
 }
+button:hover{  
+  background: var(--blue-dark);
+}
+
+
+a.btn-ir-entrevista,
+button.btn-ir-entrevista{  
+  background: var(--blue-darker);  
+  padding:0.3rem 1rem;
+  text-transform: uppercase;  
+}
+
 button.btn-ir-entrevista:hover{
   background: var(--green-darker);
 }
