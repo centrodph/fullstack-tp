@@ -35,10 +35,9 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const interviews = useInterviewsStore();
-  console.log("Checking login", from);
-
-  if (!interviews.user && from.path !== "/") {
-    return "/";
+  console.log("Checking login");
+  if (!interviews.user && to.path !== "/") {
+    return router.push("/");
   }
 });
 

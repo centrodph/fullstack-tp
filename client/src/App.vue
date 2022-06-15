@@ -28,6 +28,10 @@ export default {
           <RouterLink to="/questions">Questions</RouterLink>
           <RouterLink to="/challenges">Challenges</RouterLink>
         </nav>
+        <div v-if="user" class="user">
+          <span>{{ user }}</span>
+          <button @click="user.logout()">Logout</button>
+        </div>
       </div>
     </header>
     <div id="main-content">
@@ -60,5 +64,10 @@ nav a {
 }
 #main-content {
   padding: 1rem;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>
