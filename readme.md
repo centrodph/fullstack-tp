@@ -33,3 +33,12 @@
 - admin admin
 
 - User-Interviewer 8kLNEheFS@2M7PT
+
+
+#### Deploy Guidelines
+
+
+-  https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html#python-django-deploy
+
+- EBCli install: https://github.com/aws/aws-elastic-beanstalk-cli-setup
+
