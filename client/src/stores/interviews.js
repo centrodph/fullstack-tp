@@ -27,6 +27,9 @@ export const useInterviewsStore = defineStore({
     },
     logout() {
       console.log("Logout user", this.user);
+      this.user = null;
+      this.role = null;
+      router.push("/");
     },
   },
 });

@@ -1,16 +1,20 @@
 <script>
-import { mapState, mapActions } from "pinia";
+import { mapState } from "pinia";
 import { useInterviewsStore } from "@/stores/interviews";
 
 export default {
-  setup() {},
+  setup() {
+    const interviewsStore = useInterviewsStore();
+    return {
+      logout: interviewsStore.logout,
+    }
+  },
   components: {},
   data() {},
   created() {},
   watch: {},
   methods: {},
   computed: {
-    ...mapActions(useInterviewsStore, ["logout"]),
     ...mapState(useInterviewsStore, ["user"]),
   },
 };
@@ -24,7 +28,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .user {
   display: flex;
 }
