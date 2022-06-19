@@ -26,6 +26,7 @@ export default {
       <h1>Entrevistas</h1>
       <div class="wrapper">
         <nav v-if="user">
+          <RouterLink to="/candidates">Candidates</RouterLink>
           <RouterLink to="/interviews">Interviews</RouterLink>
           <RouterLink to="/questions">Questions</RouterLink>
           <RouterLink to="/challenges">Challenges</RouterLink>

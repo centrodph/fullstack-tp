@@ -14,11 +14,14 @@ export default {
 <template>
   <div class="candidate-box" :v-if="candidate && candidate.last_name">
     <div class="head">
-      <h4>{{ candidate?.last_name }}, {{ candidate?.name }}</h4>
-      <div class="date">{{ formatDate(candidate?.update) }}</div>
-      <a class="link" :href="candidate?.info_link" target="_blank"
-        >Ver link externo</a
-      >
+      <h4>Name: {{ candidate?.last_name }}, {{ candidate?.name }}</h4>
+      <div class="date">Updated at {{ formatDate(candidate?.update) }}</div>
+      <div class="date">
+        More Info:
+        <a class="link" :href="candidate?.info_link" target="_blank"
+          >External Link</a
+        >
+      </div>
     </div>
     <div class="description">{{ candidate?.description }}</div>
     <div class="email">{{ candidate?.email }}</div>
