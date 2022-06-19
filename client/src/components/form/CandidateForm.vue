@@ -8,7 +8,7 @@ export default {
     CandidateBox,
   },
   data: () => ({
-    list: [],
+    form: {},
   }),
 
   created() {
@@ -22,8 +22,25 @@ export default {
   },
 
   methods: {
-    async fetchData() {
-      this.list = await (await fetch(API_CANDIDATES)).json();
+    async update() {
+      const url = `${API_CANDIDATES}`;
+      fetch(url, {
+        method: "UPDATE",
+        body: JSON.stringify(this.form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    async create() {
+      const url = `${API_CANDIDATES}`;
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(this.form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     },
     formatDate: humanDateTime,
   },
