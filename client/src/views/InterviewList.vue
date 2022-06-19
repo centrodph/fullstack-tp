@@ -1,5 +1,6 @@
 <script>
-import { mapState, mapActions } from "pinia";
+import { mapState } from "pinia";
+import InterviewStatus from "@/components/InterviewStatus.vue";
 import CandidateBox from "@/components/CandidateBox.vue";
 import { humanDateTime, API_INTERVIEWS } from "../helpers/index.js";
 import { useInterviewsStatusStore } from "@/stores/interviewStatus";
@@ -11,6 +12,7 @@ export default {
   },
   components: {
     CandidateBox,
+    InterviewStatus,
   },
   data: () => ({
     list: [],
@@ -61,7 +63,9 @@ export default {
         } in list"
         :key="id"
       >
-        <h3>{{ description }} {{ statusMap[status] }}</h3>
+        <h3>
+          {{ description }} <InterviewStatus :status="statusMap[status]" />
+        </h3>
         <CandidateBox :candidate="candidate_data" />
         <p><strong>Dia y Hora: </strong>{{ formatDate(date) }}</p>
         <p>
@@ -89,6 +93,11 @@ li {
 }
 h2 {
   margin-bottom: 2rem;
+}
+h3{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .search {

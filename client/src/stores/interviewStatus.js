@@ -16,7 +16,7 @@ export const useInterviewsStatusStore = defineStore({
       console.log("Getting statuses");
       this.statuses = await (await fetch(API_INTERVIEW_STATUS)).json();
       this.statuses.forEach((status) => {
-        this.statusMap[status.id] = status.title;
+        this.statusMap[status.id] = status;
       });
     },
   },
