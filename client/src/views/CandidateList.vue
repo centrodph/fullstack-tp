@@ -1,6 +1,7 @@
 <script>
 import CandidateBox from "@/components/CandidateBox.vue";
 import CandidateAddButton from "@/components/CandidateAddButton.vue";
+import CandidateEditButton from "@/components/CandidateEditButton.vue";
 import { humanDateTime, API_CANDIDATES } from "../helpers/index.js";
 
 export default {
@@ -8,13 +9,13 @@ export default {
   components: {
     CandidateBox,
     CandidateAddButton,
+    CandidateEditButton,
   },
   data: () => ({
     list: [],
   }),
 
   created() {
-    // fetch on init
     this.fetchData();
   },
 
@@ -42,7 +43,9 @@ export default {
     <ul>
       <li v-for="candidate in list" :key="candidate.id">
         <CandidateBox :candidate="candidate" />
-        <div class="jf-l"></div>
+        <div class="jf-l">
+          <CandidateEditButton :id="candidate.id" />
+        </div>
       </li>
     </ul>
   </div>

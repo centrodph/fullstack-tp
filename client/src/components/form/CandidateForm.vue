@@ -14,39 +14,29 @@ export default {
     form: {},
     errors: {},
   }),
-  created() {},
+  created() {
+    this.fetchData();
+  },
   watch: {},
   methods: {
     isEdit() {
-      console.log("isEdit", this.$route.params.id ? true : false);
       return this.$route.params.id ? true : false;
+    },
+    async fetchData() {
+      this.form = await (
+        await fetch(`${API_CANDIDATES}${this.$route.params.id}`)
+      ).json();
     },
     handleBack() {
       this.$router.push("/candidates");
     },
     async onSubmit() {
-      console.log("Submit");
-      if (this.isEdit()) {
-        await this.update();
-      } else {
-        await this.create();
-      }
-    },
-    async update() {
-      const url = `${API_CANDIDATES}`;
-      fetch(url, {
-        method: "UPDATE",
-        body: JSON.stringify(this.form),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    },
-    async create() {
-      const url = `${API_CANDIDATES}`;
+      const url = `${API_CANDIDATES}${
+        this.isEdit() ? this.$route.params.id + "/" : ""
+      }`;
       try {
         const response = await fetch(url, {
-          method: "POST",
+          method: this.isEdit() ? "PUT" : "POST",
           body: JSON.stringify(this.form),
           headers: {
             "Content-Type": "application/json",
@@ -62,6 +52,17 @@ export default {
         this.errors = { error };
       }
     },
+    async update() {
+      const url = `${API_CANDIDATES}`;
+      fetch(url, {
+        method: "UPDATE",
+        body: JSON.stringify(this.form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    async create() {},
     formatDate: humanDateTime,
   },
   computed: {},
