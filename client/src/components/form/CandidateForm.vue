@@ -10,6 +10,10 @@ export default {
   created() {},
   watch: {},
   methods: {
+    isEdit() {
+      console.log("isEdit", this.$route.params.id ? true : false);
+      return this.$route.params.id ? true : false;
+    },
     async update() {
       const url = `${API_CANDIDATES}`;
       fetch(url, {
@@ -38,7 +42,9 @@ export default {
 
 <template>
   <div>
-    <h2>Create form</h2>
+    <h2 v-if="isEdit()">Edit form</h2>
+    <h2 v-else>Create Candidate</h2>
+    das
   </div>
 </template>
 

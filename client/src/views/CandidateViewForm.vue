@@ -7,26 +7,10 @@ export default {
   components: {
     CandidateForm,
   },
-  data: () => ({
-    list: [],
-  }),
-
-  created() {
-    // fetch on init
-    this.fetchData();
-  },
-
-  watch: {
-    // re-fetch whenever currentBranch changes
-    search: "fetchData",
-  },
-
-  methods: {
-    async fetchData() {
-      this.list = await (await fetch(API_CANDIDATES)).json();
-    },
-    formatDate: humanDateTime,
-  },
+  data() {},
+  created() {},
+  watch: {},
+  methods: {},
   computed: {},
 };
 </script>
