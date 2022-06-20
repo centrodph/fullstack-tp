@@ -1,13 +1,11 @@
 <script>
-import CandidateBox from "@/components/CandidateBox.vue";
-import CandidateAddButton from "@/components/CandidateAddButton.vue";
+import CandidateForm from "@/components/form/CandidateForm.vue";
 import { humanDateTime, API_CANDIDATES } from "../helpers/index.js";
 
 export default {
   setup() {},
   components: {
-    CandidateBox,
-    CandidateAddButton,
+    CandidateForm,
   },
   data: () => ({
     list: [],
@@ -34,17 +32,8 @@ export default {
 </script>
 
 <template>
-  <div>
-    <header>
-      <h2>Candidate List</h2>
-      <CandidateAddButton />
-    </header>
-    <ul>
-      <li v-for="candidate in list" :key="candidate.id">
-        <CandidateBox :candidate="candidate" />
-        <div class="jf-l"></div>
-      </li>
-    </ul>
+  <div class="main-form">
+    <CandidateForm :id="$route.params.id" />
   </div>
 </template>
 

@@ -13,8 +13,9 @@ body {
   min-height: 100vh;
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -40,18 +41,21 @@ a,
   }
 }
 
-ul, li{
+ul,
+li {
   list-style: none;
 }
 
-.simple-header{
+.simple-header {
   display: grid;
   justify-content: space-between;
   grid-auto-flow: column;
 }
 
-
-button, a.btn-ir-entrevista{
+button,
+button.add,
+a.add,
+a.btn-ir-entrevista {
   border: none;
   display: block;
   color: white;
@@ -59,39 +63,40 @@ button, a.btn-ir-entrevista{
   width: fit-content;
   cursor: pointer;
   transition: color 0.5s, background-color 0.5s;
-  padding:0.2rem 0.4rem;
+  padding: 0.2rem 0.4rem;
   background: var(--green-darker);
 }
-button:hover{  
+button:hover {
   background: var(--blue-dark);
 }
 
-
+button.add,
+a.add,
 a.btn-ir-entrevista,
-button.btn-ir-entrevista{  
-  background: var(--blue-darker);  
-  padding:0.3rem 1rem;
-  text-transform: uppercase;  
+button.btn-ir-entrevista {
+  background: var(--blue-darker);
+  padding: 0.3rem 1rem;
+  text-transform: uppercase;
 }
 
-button.btn-ir-entrevista:hover{
+button.btn-ir-entrevista:hover {
   background: var(--green-darker);
 }
 
-.jf-l{
+.jf-l {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.input{
+.input {
   width: 100%;
   margin: 1rem 0;
   display: grid;
   grid-auto-flow: row;
 }
-input[type="text"], 
-input[type="password"]{
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid var(--gray-dark-1);

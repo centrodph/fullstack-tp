@@ -1,26 +1,14 @@
 <script>
-import CandidateBox from "@/components/CandidateBox.vue";
-import { humanDateTime, API_CANDIDATES } from "../helpers/index.js";
+import { humanDateTime, API_CANDIDATES } from "../../helpers/index.js";
 
 export default {
   setup() {},
-  components: {
-    CandidateBox,
-  },
+  components: {},
   data: () => ({
     form: {},
   }),
-
-  created() {
-    // fetch on init
-    this.fetchData();
-  },
-
-  watch: {
-    // re-fetch whenever currentBranch changes
-    search: "fetchData",
-  },
-
+  created() {},
+  watch: {},
   methods: {
     async update() {
       const url = `${API_CANDIDATES}`;
@@ -50,13 +38,7 @@ export default {
 
 <template>
   <div>
-    <h2>Candidate List</h2>
-    <ul>
-      <li v-for="candidate in list" :key="candidate.id">
-        <CandidateBox :candidate="candidate" />
-        <div class="jf-l"></div>
-      </li>
-    </ul>
+    <h2>Create form</h2>
   </div>
 </template>
 
