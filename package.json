@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "front:install": "cd front && yarn install",
+        "front:install": "cd client && yarn install",
         "front:start": "cd client && yarn dev",
         "server:install": "source env/bin/activate && cd api && pip install -r requirements.txt",
         "server:start": "source env/bin/activate && cd api && python manage.py runserver",
