@@ -132,5 +132,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://localhost:8000']
-ALLOWED_HOSTS = ['localhost', 'http://localhost:3000', 'http://localhost:8000', 'http://ec2-18-236-160-0.us-west-2.compute.amazonaws.com/']
+ALLOWED_HOSTS = ['localhost', 'http://localhost:3000', 'http://localhost:8000', 'ec2-18-236-160-0.us-west-2.compute.amazonaws.com']
 CORS_ALLOW_ALL_ORIGINS = True
