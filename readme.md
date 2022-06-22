@@ -71,3 +71,32 @@
 
 - EBCli install: https://github.com/aws/aws-elastic-beanstalk-cli-setup
 
+
+
+#### ec2
+
+
+- https://www.youtube.com/watch?v=u0oEIqQV_-E
+
+-   apt-get update
+-   apt-get upgrade -y
+-   apt install python3-pip
+-   apt-get install libgdal-dev
+-   pip install virtualenv
+-   pip install GDAL
+-   virtualenv env
+-   git clone https://github.com/centrodph/fullstack-tp.git
+-   source env/bin/activate
+-   pip install django
+-   pip install gunicorn
+-   apt-get install -y nginx
+    -   start nginx: nginx
+-   apt-get install npm
+-   npm install -g yarn
+
+-   AWS: config inbound rules for security group
+
+-   cd fullstack/api
+-   gunicorn --bind 0.0.0.0:8000 interview_project.wsgi:application
+
+Open aplication: http://ec2-18-236-160-0.us-west-2.compute.amazonaws.com:8000/doc
