@@ -35,7 +35,22 @@
 - User-Interviewer 8kLNEheFS@2M7PT
 
 
-#### Some screenshots
+#### BackEnd screenshots
+
+- API
+<img width="1410" alt="Screen Shot 2022-06-20 at 19 55 06" src="https://user-images.githubusercontent.com/2073951/174686663-06b58376-255a-46d0-8816-613c7cf9b7a5.png">
+
+- Models
+<img width="1392" alt="Screen Shot 2022-06-20 at 19 55 15" src="https://user-images.githubusercontent.com/2073951/174686667-d1b10fcd-c9da-4f10-a61a-cda70d7cef4c.png">
+
+- ADMIN
+<img width="1407" alt="Screen Shot 2022-06-20 at 19 55 28" src="https://user-images.githubusercontent.com/2073951/174686669-e516f49a-ce1a-409e-be43-4fc5fae03be3.png">
+
+
+
+
+
+#### FrontEnd screenshots
 
 
 - login with user/pass
