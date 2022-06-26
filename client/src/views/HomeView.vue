@@ -7,7 +7,6 @@ export default {
 
     return { interviews };
   },
-
   components: {
     ErrorsForm,
   },
