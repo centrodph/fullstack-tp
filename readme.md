@@ -95,8 +95,8 @@
 
 -   apt-get update
 -   apt-get upgrade -y
--   apt install python3-pip
 -   apt-get install libgdal-dev
+-   apt install python3-pip
 -   pip install virtualenv
 -   pip install GDAL
 -   virtualenv env
@@ -108,6 +108,13 @@
     -   start nginx: nginx
 -   apt-get install npm
 -   npm install -g yarn
+-   apt-get install supervisor
+    - add supervisor config:
+        - cd /etc/supervisor/conf.d/
+        - touch gunicorn.conf
+        [program:gunicorn]
+        directory=/home/ubuntu
+
 
 -   AWS: config inbound rules for security group
 
