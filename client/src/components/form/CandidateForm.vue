@@ -29,7 +29,7 @@ export default {
     async fetchData() {
       if (this.$route.params.id) {
         this.form = await (
-          await fetch(`${API_CANDIDATES}${this.$route.params.id}`)
+          await secureFetch(`${API_CANDIDATES}${this.$route.params.id}`)
         ).json();
       }
     },
@@ -56,17 +56,6 @@ export default {
         this.errors = { error };
       }
     },
-    async update() {
-      const url = `${API_CANDIDATES}`;
-      fetch(url, {
-        method: "UPDATE",
-        body: JSON.stringify(this.form),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    },
-    async create() {},
     formatDate: humanDateTime,
   },
   computed: {},

@@ -2,7 +2,11 @@
 import CandidateBox from "@/components/CandidateBox.vue";
 import CandidateAddButton from "@/components/CandidateAddButton.vue";
 import CandidateEditButton from "@/components/CandidateEditButton.vue";
-import { humanDateTime, API_CANDIDATES } from "../helpers/index.js";
+import {
+  humanDateTime,
+  API_CANDIDATES,
+  secureFetch,
+} from "../helpers/index.js";
 
 export default {
   setup() {},
@@ -26,7 +30,7 @@ export default {
 
   methods: {
     async fetchData() {
-      this.list = await (await fetch(API_CANDIDATES)).json();
+      this.list = await (await secureFetch(API_CANDIDATES)).json();
     },
     formatDate: humanDateTime,
   },
