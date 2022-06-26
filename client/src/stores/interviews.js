@@ -7,6 +7,8 @@ export const useInterviewsStore = defineStore({
   state: () => ({
     user: null,
     role: null,
+    access: null,
+    refresh: null,
     errors: {},
   }),
   getters: {
@@ -31,28 +33,21 @@ export const useInterviewsStore = defineStore({
         if (response.status > 300) {
           this.errors = r;
         } else {
-          console.log("LOGIN OK", r);
+          this.user = username;
+          this.access = r.access;
+          this.refresh = r.refresh;
+          router.push("/interviews");
         }
       } catch (error) {
         this.errors = { error };
       }
-      console.log(this.errors);
-      // if (user === "user" && pass === "pass") {
-      //   console.log("login success");
-      //   this.user = user;
-      //   this.role = "user";
-      //   router.push("/interviews");
-      // } else if (user === "admin" && pass === "pass") {
-      //   console.log("login success");
-      //   this.user = user;
-      //   this.role = "admin";
-      //   router.push("/interviews");
-      // }
     },
     logout() {
       console.log("Logout user", this.user);
       this.user = null;
       this.role = null;
+      this.access = null;
+      this.refresh = null;
       router.push("/");
     },
   },
