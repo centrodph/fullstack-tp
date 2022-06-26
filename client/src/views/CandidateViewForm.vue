@@ -1,6 +1,5 @@
 <script>
 import CandidateForm from "@/components/form/CandidateForm.vue";
-import { humanDateTime, API_CANDIDATES } from "../helpers/index.js";
 
 export default {
   setup() {},

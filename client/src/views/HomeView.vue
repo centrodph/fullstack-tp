@@ -1,7 +1,5 @@
 <script>
-/**
- * https://pinia.vuejs.org/core-concepts/actions.html#with-setup
- */
+import ErrorsForm from "@/components/form/ErrorsForm.vue";
 import { useInterviewsStore } from "@/stores/interviews";
 export default {
   setup() {
@@ -10,7 +8,9 @@ export default {
     return { interviews };
   },
 
-  components: {},
+  components: {
+    ErrorsForm,
+  },
   data: () => ({
     user: this,
     pass: null,
@@ -25,11 +25,15 @@ export default {
       this.interviews.login(this.user, this.pass);
     },
   },
+  computed: {
+    // ...mapState(useInterviewsStore, ["errors"]),
+  },
 };
 </script>
 
 <template>
   <main>
+    <ErrorsForm :errors="interviews.errors" />
     <form v-on:submit="save($event)" autocomplete="off">
       <div class="input">
         <label :for="user">User</label>
