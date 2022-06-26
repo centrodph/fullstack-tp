@@ -23,9 +23,11 @@ export default {
       return this.$route.params.id ? true : false;
     },
     async fetchData() {
-      this.form = await (
-        await fetch(`${API_CANDIDATES}${this.$route.params.id}`)
-      ).json();
+      if (this.$route.params.id) {
+        this.form = await (
+          await fetch(`${API_CANDIDATES}${this.$route.params.id}`)
+        ).json();
+      }
     },
     handleBack() {
       this.$router.push("/candidates");
