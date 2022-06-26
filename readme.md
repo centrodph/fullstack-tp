@@ -21,13 +21,6 @@
 -  yarn front:start
 -  yarn server:start
 
-
-#### Users frontend
-
-- admin pass
-
-- user pass
-
 #### Users backend
 
 - admin admin
@@ -76,6 +69,14 @@
 - Interview complex form
 <img width="1044" alt="Screen Shot 2022-06-20 at 19 41 33" src="https://user-images.githubusercontent.com/2073951/174685715-283dcd8a-19d9-4f31-81c0-c4b939e84682.png">
 
+
+### TODO
+
+ - [X] Add login using JWT
+ - [X] Add security to Candidates
+ - [ ] Add security to Interviews
+ - [ ] Add security to Questions
+ - [ ] Add security to Challenges
 
 
 
