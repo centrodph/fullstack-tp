@@ -2,7 +2,11 @@
 import ErrorsForm from "@/components/form/ErrorsForm.vue";
 import BackBtn from "@/components/form/BackBtn.vue";
 import SaveBtn from "@/components/form/SaveBtn.vue";
-import { humanDateTime, API_CANDIDATES } from "../../helpers/index.js";
+import {
+  humanDateTime,
+  API_CANDIDATES,
+  secureFetch,
+} from "../../helpers/index.js";
 undefined;
 undefined;
 undefined;
@@ -37,13 +41,11 @@ export default {
         this.isEdit() ? this.$route.params.id + "/" : ""
       }`;
       try {
-        const response = await fetch(url, {
-          method: this.isEdit() ? "PUT" : "POST",
-          body: JSON.stringify(this.form),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await secureFetch(
+          url,
+          this.form,
+          this.isEdit() ? "PUT" : "POST"
+        );
         const r = await response.json();
         if (response.status > 300) {
           this.errors = r;
