@@ -2,7 +2,11 @@
 import { mapState } from "pinia";
 import InterviewStatus from "@/components/InterviewStatus.vue";
 import CandidateBox from "@/components/CandidateBox.vue";
-import { humanDateTime, API_INTERVIEWS } from "../helpers/index.js";
+import {
+  humanDateTime,
+  API_INTERVIEWS,
+  isDoneStatus,
+} from "../helpers/index.js";
 import { useInterviewsStatusStore } from "@/stores/interviewStatus";
 
 export default {
@@ -35,6 +39,7 @@ export default {
       this.list = await (await fetch(API_INTERVIEWS)).json();
     },
     formatDate: humanDateTime,
+    isDoneStatus,
   },
   computed: {
     ...mapState(useInterviewsStatusStore, ["statusMap"]),
@@ -74,8 +79,17 @@ export default {
         </p>
         <p><strong>Access Code: </strong>{{ code_access }}</p>
         <div class="jf-l">
-          <RouterLink class="btn-ir-entrevista" :to="'/interview/' + id"
+          <RouterLink
+            v-if="!isDoneStatus(status)"
+            class="btn-ir-entrevista"
+            :to="'/interview/' + id"
             >Ir a la entrevista</RouterLink
+          >
+          <RouterLink
+            v-if="isDoneStatus(status)"
+            class="btn-ir-resultados"
+            :to="'/interview/' + id + '/results'"
+            >Ver resultados</RouterLink
           >
         </div>
       </li>
@@ -94,7 +108,7 @@ li {
 h2 {
   margin-bottom: 2rem;
 }
-h3{
+h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
