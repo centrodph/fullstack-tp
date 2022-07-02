@@ -50,10 +50,6 @@ export default {
 <template>
   <div>
     <h2>Interview List</h2>
-    <div class="search">
-      <label :for="search">Search</label>
-      <input type="text" :id="search" name="search" v-model="search" />
-    </div>
     <ul>
       <li
         v-for="{
