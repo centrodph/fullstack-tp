@@ -36,6 +36,11 @@ const router = createRouter({
       component: () => import("../views/ChallengeList.vue"),
     },
     {
+      path: "/interview/:id/results",
+      name: "interviewCandidateResults",
+      component: () => import("../views/InterviewCandidateResults.vue"),
+    },
+    {
       path: "/interview/:id",
       name: "interviewCandidate",
       component: () => import("../views/InterviewCandidate.vue"),

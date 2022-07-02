@@ -2,17 +2,20 @@
 import debounce from "lodash.debounce";
 import CandidateBox from "@/components/CandidateBox.vue";
 import QuestionItem from "@/components/QuestionItem.vue";
+import QuestionOption from "@/components/QuestionOption.vue";
 import {
   humanDateTime,
   API_INTERVIEWS,
   API_CHALLENGES,
   API_INTERVIEW_REPORT,
+  calculateScore,
 } from "../helpers/index.js";
 
 export default {
   components: {
     CandidateBox,
     QuestionItem,
+    QuestionOption,
   },
   data: () => ({
     interview: {},
@@ -46,9 +49,46 @@ export default {
         });
       }
     },
+    calculateScore,
     formatDate: humanDateTime,
+    onChange(e) {
+      const { question, questionOption } = e.target.dataset;
+      this.answer[this.getKey(question)] = questionOption;
+      this.updateSelection(question);
+    },
+    onChangeComment(e) {
+      const { question } = e.target.dataset;
+      this.comments[question] = e.target.value;
+      this.updateSelection(question);
+    },
+    onChangeDebounce: debounce(function (e) {
+      this.onChangeComment(e);
+    }, 600),
     getKey(question) {
       return `${question}`;
+    },
+    save() {
+      Object.keys(this.answer).forEach(this.updateSelection);
+    },
+    updateSelection(question) {
+      if (!this.answer[this.getKey(question)]) return;
+
+      const url = `${API_INTERVIEW_REPORT}save_question_answer/`;
+      const data = {
+        comments: this.comments[question],
+        interview: this.interview.id,
+        candidate: this.interview.candidate_data.id,
+        challenge: this.interview.challenge,
+        question: question,
+        question_option: this.answer[this.getKey(question)],
+      };
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     },
   },
 };
@@ -61,7 +101,9 @@ export default {
     <div class="interview-main">
       <div class="interview-candidate">
         <h3>Candidato</h3>
-        <CandidateBox :candidate="interview.candidate_data" />
+        <div>
+          <CandidateBox :candidate="interview.candidate_data" />
+        </div>
       </div>
       <div class="interview-candidate">
         <h3>Challenge</h3>
@@ -79,38 +121,32 @@ export default {
                   <div
                     v-for="option in question.options"
                     :key="option.id"
-                    class="option-radio"
+                    :class="{
+                      'option-radio': true,
+                      selected:
+                        String(option.id) === answer[getKey(question.id)],
+                      correct:
+                        String(option.id) === answer[getKey(question.id)] &&
+                        option.correct,
+                      wrong:
+                        String(option.id) === answer[getKey(question.id)] &&
+                        !option.correct,
+                    }"
                   >
-                    <input
-                      :name="'question_' + question.id"
-                      type="radio"
-                      :id="option.id"
-                      :data-question="question.id"
-                      :data-question-option="option.id"
-                      :checked="
-                        String(option.id) === answer[getKey(question.id)]
-                      "
-                      @change="onChange($event)"
-                    />
-                    <label :for="option.id">{{ option.option }}</label>
+                    <QuestionOption :option="option" />
                   </div>
                   <h5>Comentarios</h5>
-                  <textarea
-                    name="comment"
-                    :data-question="question.id"
-                    v-model="comments[getKey(question.id)]"
-                  ></textarea>
+                  {{ comments[getKey(question.id)] }}
                 </div>
               </li>
             </ol>
           </div>
         </div>
-
         <div class="floating-btn">
           <div class="jf-l">
-            <button type="button" @click="save()" class="btn-ir-entrevista">
-              Guardar
-            </button>
+            <div class="results">
+              Total: {{ calculateScore(challenge.questions, answer) }}
+            </div>
           </div>
         </div>
       </div>
@@ -166,6 +202,15 @@ ol li::before {
   align-items: flex-start;
   gap: 0.5rem;
 }
+.option-radio.selected {
+  border: solid 1px gray;
+}
+.option-radio.selected.correct {
+  background: var(--green);
+}
+.option-radio.selected.wrong {
+  background: rgb(255, 186, 186);
+}
 .option-radio input {
   margin-top: 5px;
 }
@@ -173,5 +218,9 @@ textarea {
   resize: none;
   width: 100%;
   border: solid 1px #ccc;
+}
+
+.results {
+  font-size: 2rem;
 }
 </style>
