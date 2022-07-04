@@ -13,11 +13,12 @@ export const useInterviewsStore = defineStore({
   }),
   getters: {
     getUser: (state) => state.user,
-    getErrors: (state) => state.user,
+    getErrors: (state) => state.errors,
   },
   actions: {
     async login(username, password) {
       console.log("Getting access token", username, password);
+      this.errors = null;
       try {
         const response = await fetch(API_LOGIN, {
           method: "POST",
@@ -31,6 +32,7 @@ export const useInterviewsStore = defineStore({
         });
         const r = await response.json();
         if (response.status > 300) {
+          console.log(r);
           this.errors = r;
         } else {
           this.user = username;
