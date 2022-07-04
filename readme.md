@@ -11,10 +11,33 @@
 #### Setup steps
 
 -  yarn front:install
+
+    `$ cd client && yarn install`
+
 -  yarn server:install
+
+    `$ source env/bin/activate && cd api && pip install -r requirements.txt`
+
 -  yarn front:start
--  yarn server:migrate
+
+    `$ cd client && yarn dev`
+
 -  yarn server:start
+
+    `$ source env/bin/activate && cd api && python manage.py runserver`
+
+-  yarn server:migrate
+
+    `$ cd api && python manage.py migrate`
+
+-  yarn server:makemigrations
+
+    `$ cd api && python manage.py makemigrations`
+
+-  yarn server:createsuperuser
+
+    `$ cd api && python manage.py createsuperuser`
+
 
 #### Development
 
