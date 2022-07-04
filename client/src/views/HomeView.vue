@@ -1,10 +1,13 @@
 <script>
+import { mapStores } from "pinia";
+import { appStore } from "@/stores/store";
 import ErrorsForm from "@/components/form/ErrorsForm.vue";
 import { useInterviewsStore } from "@/stores/interviews";
+
+console.log(mapStores(appStore));
 export default {
   setup() {
-    const interviews = useInterviewsStore();
-
+    const interviews = useInterviewsStore(appStore);
     return { interviews };
   },
   components: {
@@ -25,7 +28,7 @@ export default {
     },
   },
   computed: {
-    // ...mapState(useInterviewsStore, ["errors"]),
+    ...mapStores(appStore),
   },
 };
 </script>
