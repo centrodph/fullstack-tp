@@ -19,13 +19,16 @@ export default {
 <template>
   <div class="error-box">
     <div class="error-item" v-for="(error, key) in errors" :key="key">
-      <strong>{{ key }}</strong
-      ><span>{{ error.join(", ") }}</span>
+      <strong>{{ key }}</strong>
+      <span>{{ Array.isArray(error) ? error.join(", ") : error }}</span>
     </div>
   </div>
 </template>
 
 <style scoped>
+.error-item strong {
+  text-transform: capitalize;
+}
 .error-item {
   display: grid;
   grid-template-columns: 120px 1fr;
