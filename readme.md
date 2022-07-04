@@ -49,6 +49,18 @@
 - login with user/pass
 <img width="1046" alt="Screen Shot 2022-06-20 at 19 39 38" src="https://user-images.githubusercontent.com/2073951/174685693-bed61c00-0300-4bc3-a9d8-80bb46567b81.png">
 
+- login errors
+<img width="1237" alt="Screen Shot 2022-07-04 at 14 11 16" src="https://user-images.githubusercontent.com/2073951/177197259-4494a390-3030-418a-99e0-6e965234862e.png">
+
+
+- ir a entrevista o ver resultados
+<img width="1062" alt="Screen Shot 2022-07-04 at 14 13 23" src="https://user-images.githubusercontent.com/2073951/177197318-f138852a-48b5-4776-9f90-d877209ef3cd.png">
+
+
+- resultados de entrevista
+<img width="1061" alt="Screen Shot 2022-07-04 at 14 14 30" src="https://user-images.githubusercontent.com/2073951/177197374-ca422a7f-5e4e-4b6e-a127-8b442662bd08.png">
+
+
 - ir a la entrevista es para ejecutar el cuestionario
 <img width="1043" alt="Screen Shot 2022-06-20 at 19 40 23" src="https://user-images.githubusercontent.com/2073951/174685697-24bcbf89-1c32-4ac8-a350-b70a4296a869.png">
 
@@ -89,7 +101,7 @@
 
 
 
-#### ec2
+#### ec2 no implementado
 
 
 - https://www.youtube.com/watch?v=u0oEIqQV_-E
